@@ -90,7 +90,7 @@ bot.on("message", async message => {
     xp[message.author.id].level = curlvl + 1;
     let lvlup = new Discord.RichEmbed()
     .setTitle("Level Up!")
-    .setColor(purple)
+    .setColor(black)
     .addField("New Level", curlvl + 1);
 
     message.channel.send(lvlup).then(msg => {msg.delete(5000)});
@@ -122,4 +122,4 @@ bot.on("message", async message => {
 
 });
 
-bot.login(tokenfile.token);
+client.login(process.env.BOT_TOKEN);
