@@ -2,7 +2,7 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const client = new Discord.Client();
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 let coins = require("./coins.json");
 let xp = require("./xp.json");
 let purple = botconfig.purple;
@@ -21,19 +21,19 @@ fs.readdir("./commands/", (err, files) => {
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
     console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
+    client.commands.set(props.help.name, props);
   });
 });
 
-bot.on("ready", async () => {
+client.on("ready", async () => {
 
   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-  bot.user.setActivity("tutorials on TSC", {type: "WATCHING"});
+  client.user.setActivity("tutorials on TSC", {type: "WATCHING"});
 
 });
 
 
-bot.on("message", async message => {
+client.on("message", async message => {
 
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
@@ -121,4 +121,4 @@ bot.on("message", async message => {
 
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(BOT_TOKEN);
