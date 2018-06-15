@@ -27,8 +27,8 @@ fs.readdir("./commands/", (err, files) => {
 
 client.on("ready", async () => {
 
-  console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-  client.user.setActivity("tutorials on TSC", {type: "WATCHING"});
+  console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
+  client.user.setActivity("Asian Noodles", {type: "EATING"});
 
 });
 
@@ -112,8 +112,8 @@ client.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if(commandfile) commandfile.run(bot,message,args);
+  let commandfile = client.commands.get(cmd.slice(prefix.length));
+  if(commandfile) commandfile.run(client,message,args);
 
   setTimeout(() => {
     cooldown.delete(message.author.id)
@@ -121,4 +121,4 @@ client.on("message", async message => {
 
 });
 
-client.login(BOT_TOKEN);
+client.login("NDUyMjU1ODkxMTc4Mzg5NTE0.DgXHPg.ORqJC1ZFqnaVv3ML9GTwrvCyYbY");
