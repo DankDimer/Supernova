@@ -29,7 +29,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", async () => {
 
   console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
-  bot.user.setActivity("with fire", {type: "PLAYING"});
+  client.user.setActivity("with fire", {type: "PLAYING"});
 });
 
 
@@ -89,7 +89,7 @@ client.on("message", async message => {
     xp[message.author.id].level = curlvl + 1;
     let lvlup = new Discord.RichEmbed()
     .setTitle("Level Up!")
-    .setColor(black)
+    .setColor("#000000")
     .addField("New Level", curlvl + 1);
 
     message.channel.send(lvlup).then(msg => {msg.delete(5000)});
