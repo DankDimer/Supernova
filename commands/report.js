@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Time", message.createdAt)
     .addField("Reason", rreason);
 
-console.log(`${message.author}`, "reported", `${rUser}`, "in", message.channel, "at", message.createdAt, "for", rreason)
+
 
     let reportschannel = message.guild.channels.find(`name`, "reports", "alerts", "report");
     if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
