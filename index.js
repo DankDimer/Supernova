@@ -29,7 +29,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", async () => {
 
   console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
-  client.user.setActivity("Asain Noodles", {type: "EATING"});
+  client.user.setActivity("to Guns n' Roses", {type: "LISTENING"});
 });
 
 
