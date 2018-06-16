@@ -6,6 +6,7 @@ client.commands = new Discord.Collection();
 let coins = require("./coins.json");
 let xp = require("./xp.json");
 let purple = botconfig.purple;
+let black = botconfig.black;
 let cooldown = new Set();
 let cdseconds = 5;
 
