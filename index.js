@@ -120,5 +120,5 @@ client.on("message", async message => {
 
 });
 
-client.login(process.env.BOT_TOKEN)
+client.login("NDUyMjU1ODkxMTc4Mzg5NTE0.DgXkXw.imHxTYum7QbzQTsuwctyjNn2TBw")
 
