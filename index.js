@@ -29,8 +29,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", async () => {
 
   console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
-  client.user.setActivity("Asian Noodles", {type: "EATING"});
-
+  bot.user.setActivity("with fire", {type: "PLAYING"});
 });
 
 
@@ -122,4 +121,5 @@ client.on("message", async message => {
 
 });
 
-client.login("NDUyMjU1ODkxMTc4Mzg5NTE0.DgXHPg.ORqJC1ZFqnaVv3ML9GTwrvCyYbY");
+client.login("NDUyMjU1ODkxMTc4Mzg5NTE0.DgXkXw.imHxTYum7QbzQTsuwctyjNn2TBw")
+
