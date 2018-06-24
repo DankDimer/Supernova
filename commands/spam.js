@@ -22,7 +22,7 @@ if(command === "spam") {
   message.reply("@everyone")
   message.reply("@everyone");
 }
-
+}
 module.exports.help = {
   name: "spam"
 }
