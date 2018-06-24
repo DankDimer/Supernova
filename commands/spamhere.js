@@ -23,5 +23,5 @@ message.reply("@here")
 }
 
 module.exports.help = {
-  name:"botinfo"
+  name:"spamhere"
 }
