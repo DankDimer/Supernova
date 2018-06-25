@@ -34,7 +34,7 @@ client.on("ready", async () => {
 
 
 client.on("message", async message => {
-//if(message.author.bot) return;
+  if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
