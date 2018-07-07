@@ -2,6 +2,7 @@
   const Discord = require("discord.js");
 const bot = new Discord.Client({disableEveryone: true});
 const client = new Discord.Client({disableEveryone: true});
+const colors = require("/../colors.json");
 
   module.exports.run = async (bot, message, args) => {
   
@@ -53,6 +54,7 @@ const client = new Discord.Client({disableEveryone: true});
        .addField("Command 16:", `***${prefix}say <Word>*** \nThis will make the bot say whatever you input into it. Use this wisely`)
        .addField("Command 17:", `***${prefix}clear <number>*** \nThis command will bulk delete the amount of messages that you input into the command.`)
        .addField("Command 18:", `***${prefix}setprefix <desired prefix>*** \nThis command will set the bot prefix to any prefix that you want. *Only 1 character is reccomended!*`)
+       .addField("This command is still being added to. All commands can be seen on my GitHub if you really need to see them. https://github.com/DankDimer/Supernova/tree/master/commands")
        .addField("Info", "This bot is still in development. Also if a command does not work contact me (DankDimer#2285)")
        .setFooter("Bot was made by DankDimer#2285");
   
