@@ -1,7 +1,6 @@
 const clientconfig = require("./clientconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs")
-const ms = require("ms");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 let coins = require("./coins.json");
