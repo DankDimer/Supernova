@@ -1,12 +1,13 @@
-const botconfig = require("./botconfig.json");
+const clientconfig = require("./clientconfig.json");
 const Discord = require("discord.js");
-const fs = require("fs");
+const fs = require("fs")
+const ms = require("ms");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 let coins = require("./coins.json");
 let xp = require("./xp.json");
-let purple = botconfig.purple;
-let black = botconfig.black;
+let purple = clientconfig.purple;
+let black = clientconfig.black;
 let cooldown = new Set();
 let cdseconds = 5;
 
@@ -29,19 +30,93 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", async () => {
 
   console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
-  client.user.setActivity("with fire", {type: "PLAYING"});
+  client.user.setActivity("Guns n' Roses", {type: "LISTENING"})
+  let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"))
+
+client.on("channelCreate", async channel => {
+
+    console.log(`${channel.name} has been created`)
+
+    let sChannel = channel.guild.channels.find(`name`, "events")
+    sChannel.send(`${channel} has been created`)
+
+})
+
+client.on("guildMemberRemove", async member =>{
+    console.log(`${member.id} left the server!`)
+
+    let welcomechannel = member.guild.channels.find(`name`, "welcome_leave");
+    let lrandom = Math.floor(Math.random()* 5) + 1;
+    //creating random leave message with if else statement
+    if(lrandom === 1){
+        welcomechannel.send(`Sad to see you leave ${member}.`)
+    }else if (lrandom === 2){
+        welcomechannel.send(`Coast is clear everyone, ${member} has left the server.`)
+    }else if(lrandom === 3){
+        welcomechannel.send(`GOOD RIDDANCE. ${member} has left the server.`)
+    }else if(lrandom === 4){
+        welcomechannel.send(`Why have you left us ${member}, please come back!`)
+    }else{
+        welcomechannel.send(`Get your pitchforks, ${member} has abandon us!`)
+    };
+})
+
+client.on("guildMemberAdd", async member => {
+    console.log(`${member.id} Joined The Server!`)
+
+
+    let welcomechannel = member.guild.channels.find(`name`, "welcome_leave");    
+let jrandom = Math.floor(Math.random()* 5) + 1;
+//creating a custom and random join message
+if(jrandom === 1){
+    welcomechannel.send(`Looks like ***${member}*** has joined the server!`)
+}else if(jrandom === 2){
+    welcomechannel.send(`OH NO. Looks like ***${member}*** has joined the server!`)
+}else if(jrandom === 3){
+    welcomechannel.send(`No need to fear, for ***${member}*** is here!`)
+}else if(jrandom === 4){
+    welcomechannel.send(`Everyone hide! ***${member}*** is here!!`)
+}else if(jrandom === 5){
+    welcomechannel.send(`${member} HAS ARRIVED TO THE PARTY!`)
+}else if(jrandom === 6){
+    welcomechannel.send(`HIDE UR MEMES. ***${member}*** has joined thet server`)
+}
+
+});
+
+
+
+client.on("message", async message => {
+    if(message.author.client) return;
+    if(message.channel.type === "dm") return;
+
+    let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"))
+
+    if(!prefixes[message.guild.id]){
+        prefixes[message.guild.id] ={
+            prefixes: clientconfig.prefix
+        };
+    }
+
+    let prefix = prefixes[message.guild.id].prefixes;
+    console.log(prefix)
+
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+
 });
 
 
 client.on("message", async message => {
 
-  if(message.author.bot) return;
+  if(message.author.client) return;
   if(message.channel.type === "dm") return;
 
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if(!prefixes[message.guild.id]){
     prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
+      prefixes: clientconfig.prefix
     };
   }
 
@@ -121,5 +196,5 @@ client.on("message", async message => {
 
 });
 
-client.login("NDUyMjU1ODkxMTc4Mzg5NTE0.DgXkXw.imHxTYum7QbzQTsuwctyjNn2TBw")
-
+client.login(process.env.BOT_TOKEN)
+})
