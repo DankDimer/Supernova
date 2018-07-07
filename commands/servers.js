@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const colors = require("/../colors.json");
+const colors = require("./colors.json");
 
 module.exports.run = async (bot, message, args) => {
     let serverembed = new Discord.RichEmbed()
