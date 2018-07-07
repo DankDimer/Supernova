@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
         prefixes: args[0]
     };
 
-    fs.writeFile("./prefix.json", JSON.stringify(prefixes), (err) =>{
+    fs.writeFile("/../prefix.json", JSON.stringify(prefixes), (err) =>{
         if(err) console.log(err)
     })
 
