@@ -1,7 +1,7 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs")
-const client = new Discord.Client();
+const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 let coins = require("./coins.json");
 let xp = require("./xp.json");
@@ -9,30 +9,13 @@ let purple = botconfig.purple;
 let black = botconfig.black;
 let cooldown = new Set();
 let cdseconds = 5;
+const colors = require("./colors.json");
+const bot = new Discord.Client({disableEveryone: true});
+let coins = require("./coins.json")
+let xp = require("./xp.json")
+let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"))
 
-fs.readdir("./commands/", (err, files) => {
-
-  if(err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js");
-  if(jsfile.length <= 0){
-    console.log("Couldn't find commands.");
-    return;
-  }
-
-  jsfile.forEach((f, i) =>{
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-    client.commands.set(props.help.name, props);
-  });
-});
-
-client.on("ready", async () => {
-
-  console.log(`${client.user.username} is online on ${client.guilds.size} servers!`);
-  client.user.setActivity("Guns n' Roses", {type: "LISTENING"})
-  let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"))
-
-client.on("channelCreate", async channel => {
+bot.on("channelCreate", async channel => {
 
     console.log(`${channel.name} has been created`)
 
@@ -41,7 +24,7 @@ client.on("channelCreate", async channel => {
 
 })
 
-client.on("guildMemberRemove", async member =>{
+bot.on("guildMemberRemove", async member =>{
     console.log(`${member.id} left the server!`)
 
     let welcomechannel = member.guild.channels.find(`name`, "welcome_leave");
@@ -60,7 +43,7 @@ client.on("guildMemberRemove", async member =>{
     };
 })
 
-client.on("guildMemberAdd", async member => {
+bot.on("guildMemberAdd", async member => {
     console.log(`${member.id} Joined The Server!`)
 
 
@@ -83,10 +66,14 @@ if(jrandom === 1){
 
 });
 
+bot.on("ready", async () => {
+ console.log(`${bot.user.username} is online! `);
+ bot.user.setActivity(" with Complex Code! | !help ")
+}); 
 
 
-client.on("message", async message => {
-    if(message.author.client) return;
+bot.on("message", async message => {
+    if(message.author.bot) return;
     if(message.channel.type === "dm") return;
 
     let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"))
@@ -96,28 +83,6 @@ client.on("message", async message => {
             prefixes: botconfig.prefix
         };
     }
-
-    let prefix = prefixes[message.guild.id].prefixes;
-    console.log(prefix)
-
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-
-});
-
-
-client.on("message", async message => {
-
-  if(message.author.client) return;
-  if(message.channel.type === "dm") return;
-
-  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  if(!prefixes[message.guild.id]){
-    prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
-    };
-  }
 
   if(!coins[message.author.id]){
     coins[message.author.id] = {
