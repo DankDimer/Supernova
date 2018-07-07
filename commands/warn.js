@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const bot = new Discord.Client({disableEveryone: true});
+const client = new Discord.Client({disableEveryone: true});
 
 module.exports.run = async (bot, message, args) => {
 if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("***You maynot warn this user***");
