@@ -1,4 +1,5 @@
 const botconfig = require("./botconfig.json");
+const bot = new Discord.Client({disableEveryone: true});
 const Discord = require("discord.js");
 const fs = require("fs")
 bot.commands = new Discord.Collection();
@@ -9,7 +10,7 @@ let black = botconfig.black;
 let cooldown = new Set();
 let cdseconds = 5;
 const colors = require("./colors.json");
-const bot = new Discord.Client({disableEveryone: true});
+
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"))
 
 bot.on("channelCreate", async channel => {
