@@ -1,12 +1,12 @@
-const clientconfig = require("./clientconfig.json");
+const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs")
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 let coins = require("./coins.json");
 let xp = require("./xp.json");
-let purple = clientconfig.purple;
-let black = clientconfig.black;
+let purple = botconfig.purple;
+let black = botconfig.black;
 let cooldown = new Set();
 let cdseconds = 5;
 
@@ -93,7 +93,7 @@ client.on("message", async message => {
 
     if(!prefixes[message.guild.id]){
         prefixes[message.guild.id] ={
-            prefixes: clientconfig.prefix
+            prefixes: botconfig.prefix
         };
     }
 
@@ -115,7 +115,7 @@ client.on("message", async message => {
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if(!prefixes[message.guild.id]){
     prefixes[message.guild.id] = {
-      prefixes: clientconfig.prefix
+      prefixes: botconfig.prefix
     };
   }
 
