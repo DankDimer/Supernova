@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({disableEveryone: true});
 const client = new Discord.Client({disableEveryone: true});
-const fs = requre("fs")
+const fs = require("fs")
 
 module.exports.run = async (bot, message, args) => {
     //!setprefix <symbol>
