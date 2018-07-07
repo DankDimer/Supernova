@@ -150,8 +150,6 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  let commandfile = client.commands.get(cmd.slice(prefix.length));
-  if(commandfile) commandfile.run(client,message,args);
 
   setTimeout(() => {
     cooldown.delete(message.author.id)
