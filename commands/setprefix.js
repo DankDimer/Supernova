@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("🚫***You can not do that.***");
     if(!args[0] || args[0 == "helpme"]) return message.reply("Usage: !prefix <prefered prefix> *Only one is reccomended*");
 
-    let prefixes = JSON.parse(fs.readFileSync("/../prefix.json", "utf8"));
+    let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
 
     prefixes[message.guild.id] = {
         prefixes: args[0]
