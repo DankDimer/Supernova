@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({disableEveryone: true});
 const client = new Discord.Client({disableEveryone: true});
+const colors = require("./colors")
 
 module.exports.run = async (bot, message, args) => {
     let sicon = message.guild.iconURL;
